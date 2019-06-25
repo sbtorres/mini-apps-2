@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Search from './Search.jsx';
 
 class App extends React.Component {
@@ -10,7 +11,13 @@ class App extends React.Component {
   }
 
   getSearchResults(queryString) {
-    console.log(queryString);
+    axios.get(`http://localhost:3000/events?q=${queryString}`)
+      .then((results) => {
+        console.log(results);
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 
   render() {
