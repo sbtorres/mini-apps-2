@@ -1,1 +1,5 @@
-public/app.js
+# Node Modules
+node_modules
+
+# Webpack bundle
+public/bundle.js
