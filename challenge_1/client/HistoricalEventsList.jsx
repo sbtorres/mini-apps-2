@@ -3,9 +3,9 @@ import HistoricalEvent from './HistoricalEvent.jsx';
 
 const HistoricalEventsList = (props) => (
   <div>
-    {props.historicalEvents.map((historicalEvent) => {
+    {props.historicalEvents.map((historicalEvent, index) => {
       return (
-        <HistoricalEvent historicalEvent={historicalEvent} />
+        <HistoricalEvent key={index} historicalEvent={historicalEvent} />
       )
     })}
   </div>
