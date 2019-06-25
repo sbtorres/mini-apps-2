@@ -9,6 +9,7 @@ class Search extends React.Component {
     };
 
     this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
   }
 
   handleUserInput (event) {
@@ -19,12 +20,22 @@ class Search extends React.Component {
     })
   }
 
+  handleSearchButtonClick(event) {
+    event.preventDefault();
+    const { getSearchResults } = this.props;
+    getSearchResults(this.state.search);
+    this.setState({
+      search: '',
+    })
+  }
+
   render() {
     return (
       <form>
-        <label> Search: 
-          <input type="text" name="search" onChange={this.handleUserInput} />
+        <label> Find Historical Events: 
+          <input type="text" name="search" value={this.state.search} onChange={this.handleUserInput} />
         </label>
+        <button onClick={this.handleSearchButtonClick}>Search!</button>
       </form>
     )
   }

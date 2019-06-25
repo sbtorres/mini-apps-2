@@ -6,11 +6,16 @@ class App extends React.Component {
     super(props);
 
     this.state = {};
+    this.getSearchResults = this.getSearchResults.bind(this);
+  }
+
+  getSearchResults(queryString) {
+    console.log(queryString);
   }
 
   render() {
     return (
-      <Search />
+      <Search getSearchResults={this.getSearchResults} />
     )
   }
 }
