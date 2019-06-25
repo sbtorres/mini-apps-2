@@ -6,7 +6,8 @@
   "scripts": {
     "build-dev": "webpack -d --watch",
     "build-prod": "webpack --mode production",
-    "server-dev": "json-server --watch --static data/db.json"
+    "server-dev": "nodemon server/server.js",
+    "start": "node server/server.js"
   },
   "keywords": [],
   "author": "Scott Torres",
