@@ -1,7 +1,6 @@
 import React from 'react';
-import Search from './Search.jsx';
 
-class App extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,9 +9,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <Search />
+      <div>Search Bar</div>
     )
   }
 }
 
-export default App;
+export default Search;
