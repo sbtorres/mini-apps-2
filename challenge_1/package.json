@@ -2,12 +2,11 @@
   "name": "challenge_1",
   "version": "1.0.0",
   "description": "A react application to display historical events!",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build-dev": "webpack -d --watch",
     "build-prod": "webpack --mode production",
-    "start": "node server/server.js",
-    "server-dev": "nodemon server/server.js"
+    "server-dev": "json-server --watch --static data/db.json"
   },
   "keywords": [],
   "author": "Scott Torres",
