@@ -1,7 +1,7 @@
 {
   "name": "challenge_1",
   "version": "1.0.0",
-  "description": "",
+  "description": "A react application to display historical events!",
   "main": "index.js",
   "scripts": {
     "build-dev": "webpack -d --watch",
@@ -10,7 +10,7 @@
     "server-dev": "nodemon server/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Scott Torres",
   "license": "ISC",
   "dependencies": {
     "json-server": "^0.15.0",
