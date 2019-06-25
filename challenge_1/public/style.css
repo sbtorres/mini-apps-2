@@ -4,3 +4,14 @@
   margin: 10px 0px;
   border: 2px solid black;
 }
+
+ul {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+li {
+  display: inline-block;
+  padding: 0px 5px;
+}

@@ -6,7 +6,7 @@
   "scripts": {
     "build-dev": "webpack -d --watch",
     "build-prod": "webpack --mode production",
-    "server-dev": "json-server --watch --static data/db.json"
+    "server-dev": "json-server --watch data/db.json"
   },
   "keywords": [],
   "author": "Scott Torres",
@@ -17,7 +17,8 @@
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-paginate": "^6.3.0"
+    "react-paginate": "^6.3.0",
+    "util": "^0.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
