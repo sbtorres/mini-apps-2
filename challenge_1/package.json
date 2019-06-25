@@ -16,7 +16,8 @@
     "json-server": "^0.15.0",
     "path": "^0.12.7",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-paginate": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
