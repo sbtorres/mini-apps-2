@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js';
 
-class LineChart extends React.Component {
+class LineChart extends React.PureComponent {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
@@ -30,8 +30,15 @@ class LineChart extends React.Component {
             {
                 label: "BitCoin Historical Trend",
                 data: values,
+                fill: false,
+                borderColor: 'rgb(66, 241, 244)'
             }
         ]
+      },
+      options: {
+        tooltips: {
+          mode: 'x-axis'
+        }
       }
     });
   }
