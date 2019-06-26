@@ -7,19 +7,31 @@ class LineChart extends React.Component {
     this.chartRef = React.createRef();
 
     this.state = {};
+    this.buildChart = this.buildChart.bind(this);
   }
 
   componentDidMount() {
+    this.buildChart();
+  }
+
+  componentDidUpdate() {
+    this.buildChart();
+  }
+
+  buildChart() {
+    const { dates, values } = this.props;
+    console.log(dates);
+    console.log(values);
     const myChartRef = this.chartRef.current.getContext("2d");
 
     new Chart(myChartRef, {
       type: "line",
       data: {
-        labels: ["Jan", "Feb", "March"],
+        labels: dates,
         datasets: [
             {
                 label: "BitCoin Historical Trend",
-                data: [1000.00, 1540.02, 2000.31],
+                data: values,
             }
         ]
       }
