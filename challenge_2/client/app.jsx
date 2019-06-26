@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import LineChart from './LineChart.jsx';
 
 class App extends React.Component {
   constructor(props){
@@ -24,7 +25,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>Test!</div>
+      <div>
+        <div>Test!</div>
+        <LineChart />
+      </div>
     )
   }
 }
