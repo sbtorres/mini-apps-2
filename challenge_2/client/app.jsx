@@ -11,32 +11,38 @@ class App extends React.Component {
       dates: [],
       values: []
     };
+    
+    this.getDataForUserInputDates = this.getDataForUserInputDates.bind(this);
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:3000/api/history/dec2018')
-      .then((historicalData) => {
-        let data = historicalData.data
-        let dates = [];
-        let values = [];
-        for (let key in data) {
-          dates.push(key);
-          values.push(data[key]);
-        }
-        this.setState({
-          dates: dates,
-          values: values,
-        });
-      })
-      .catch((err) => {
-        throw err;
-      })
+    this.getDataForUserInputDates('2018-12-01', '2018-12-31');
+  }
+
+  getDataForUserInputDates(start, end) {
+    Axios.get(`http://localhost:3000/api/history?start=${start}&end=${end}`)
+    .then((historicalData) => {
+      let data = historicalData.data
+      let dates = [];
+      let values = [];
+      for (let key in data) {
+        dates.push(key);
+        values.push(data[key]);
+      }
+      this.setState({
+        dates: dates,
+        values: values,
+      });
+    })
+    .catch((err) => {
+      throw err;
+    })
   }
 
   render() {
     return (
       <div>
-        <DateInputForm />
+        <DateInputForm getDataForUserInputDates={this.getDataForUserInputDates}/>
         <div>
             {this.state.dates.length > 1 && 
               <LineChart dates={this.state.dates} values={this.state.values} />
