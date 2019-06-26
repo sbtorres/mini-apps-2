@@ -6,7 +6,8 @@ class DateInputForm extends React.Component {
 
     this.state = {
       start: '',
-      end: ''
+      end: '',
+      areValidDates: true,
     };
 
     this.handleUserInput = this.handleUserInput.bind(this);
@@ -21,9 +22,18 @@ class DateInputForm extends React.Component {
     })
   }
 
-  handleSubmitButtonClick(event) {
+  handleSubmitButtonClick() {
     const { getDataForUserInputDates } = this.props;
-    getDataForUserInputDates(this.state.start, this.state.end);
+    if (this.state.start < this.state.end) {
+      getDataForUserInputDates(this.state.start, this.state.end);
+      this.setState({
+        areValidDates: true
+      })
+    } else {
+      this.setState({
+        areValidDates: false
+      })
+    }
   }
 
   render() {
@@ -40,6 +50,11 @@ class DateInputForm extends React.Component {
           </label>
         </form>
         <button onClick={this.handleSubmitButtonClick}>Submit</button>
+        <div>
+          {!this.state.areValidDates &&
+            <div className="error-message">End date is prior to start date, please re-enter valid dates.</div> 
+          }
+        </div>
       </div>
     )
   }

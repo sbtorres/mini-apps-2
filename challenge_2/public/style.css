@@ -10,3 +10,8 @@
 .end-date-input {
   display: flex;
 }
+
+.error-message {
+  display: flex;
+  color: red;
+}
