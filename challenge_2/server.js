@@ -6,8 +6,8 @@ const PORT = 3000;
 
 app.use(express.static('public'));
 
-app.get('/api/history', (req, res) => {
-  Axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2018-01-01&end=2019-06-25')
+app.get('/api/history/', (req, res) => {
+  Axios.get(`https://api.coindesk.com/v1/bpi/historical/close.json?start=${req.query.start}&end=${req.query.end}`)
     .then((historicalData) => {
       res.status(200).send(historicalData.data.bpi);
     })
