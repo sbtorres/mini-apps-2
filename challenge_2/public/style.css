@@ -1,0 +1,12 @@
+.date-input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.start-date-input {
+  display: flex;
+}
+
+.end-date-input {
+  display: flex;
+}
