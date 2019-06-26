@@ -20,8 +20,6 @@ class LineChart extends React.Component {
 
   buildChart() {
     const { dates, values } = this.props;
-    console.log(dates);
-    console.log(values);
     const myChartRef = this.chartRef.current.getContext("2d");
 
     new Chart(myChartRef, {
