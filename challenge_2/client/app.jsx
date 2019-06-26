@@ -35,8 +35,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>Test!</div>
-        <LineChart dates={this.state.dates} values={this.state.values} />
+          {this.state.dates.length > 1 && 
+            <LineChart dates={this.state.dates} values={this.state.values} />
+          }
       </div>
     )
   }
