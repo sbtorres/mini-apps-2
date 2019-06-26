@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import DateInputForm from './DateInputForm.jsx';
 import LineChart from './LineChart.jsx';
 
 class App extends React.Component {
@@ -35,9 +36,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-          {this.state.dates.length > 1 && 
-            <LineChart dates={this.state.dates} values={this.state.values} />
-          }
+        <DateInputForm />
+        <div>
+            {this.state.dates.length > 1 && 
+              <LineChart dates={this.state.dates} values={this.state.values} />
+            }
+        </div>
       </div>
     )
   }
