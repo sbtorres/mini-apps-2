@@ -16,5 +16,15 @@ app.get('/api/history', (req, res) => {
     })
 })
 
+app.get('/api/history/dec2018', (req, res) => {
+  Axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2018-12-01&end=2018-12-31')
+    .then((historicalData) => {
+      res.status(200).send(historicalData.data.bpi);
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    })
+})
+
 app.listen(PORT, () => console.log(`Express Server is now listing on port ${PORT}`));
 
