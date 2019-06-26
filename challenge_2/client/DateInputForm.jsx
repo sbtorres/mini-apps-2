@@ -10,6 +10,7 @@ class DateInputForm extends React.Component {
     };
 
     this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this);
   }
 
   handleUserInput(event) {
@@ -18,6 +19,11 @@ class DateInputForm extends React.Component {
     this.setState({
       [name]: target.value,
     })
+  }
+
+  handleSubmitButtonClick(event) {
+    const { getDataForUserInputDates } = this.props;
+    getDataForUserInputDates(this.state.start, this.state.end);
   }
 
   render() {
@@ -33,6 +39,7 @@ class DateInputForm extends React.Component {
             <input type="text" name="end" value={this.state.end} onChange={this.handleUserInput} />
           </label>
         </form>
+        <button onClick={this.handleSubmitButtonClick}>Submit</button>
       </div>
     )
   }
