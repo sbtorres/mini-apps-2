@@ -38,6 +38,35 @@ class LineChart extends React.PureComponent {
       options: {
         tooltips: {
           mode: 'x-axis'
+        },
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Bitcoin Value ($)',
+            },
+            ticks: {
+                // Include a dollar sign in the ticks
+                callback: function(value, index, values) {
+                    return '$' + value;
+                }
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Date',
+            }
+          }],
+        },
+        title: {
+          display: true,
+          position: 'top',
+          text: 'Bitcoin Historical Stock Chart'
+        },
+        legend: {
+          display: true,
+          position: 'bottom',
         }
       }
     });
