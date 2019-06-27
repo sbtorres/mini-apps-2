@@ -22,13 +22,14 @@ class Scoreboard extends React.Component {
         [0, 0, 0]
       ],
       total: 0,
-      currentTurn: 0,
+      currentTurn: 18,
       isValidScore: true,
       isGameOver: false,
     };
 
     this.handleScoreInput = this.handleScoreInput.bind(this);
     this.determineFrame = this.determineFrame.bind(this);
+    this.checkIfScoreIsValid = this.checkIfScoreIsValid.bind(this);
     this.determineNextTurn = this.determineNextTurn.bind(this);
     this.checkGameStatus = this.checkGameStatus.bind(this);
   }
@@ -36,7 +37,8 @@ class Scoreboard extends React.Component {
   handleScoreInput(nextScore) {
     let frame = this.determineFrame();
     let newBoard = this.state.player1;
-    if (this.state.currentTurn < 18 && frame[1] === 1 && (nextScore + newBoard[frame[0]][0] > 10)) {
+    let validScore = this.checkIfScoreIsValid(nextScore, frame);
+    if (!validScore) {
       this.setState({
         isValidScore: false
       })
@@ -66,8 +68,27 @@ class Scoreboard extends React.Component {
     }
   }
 
+  checkIfScoreIsValid(score, frame) {
+    if(this.state.currentTurn < 18 && frame[1] === 1 && (score + newBoard[frame[0]][0] > 10)) {
+      return false;
+    }
+
+    if(this.state.currentTurn > 18) {
+      let firstBall = this.state.player1[10][0];
+      let secondBall = this.state.player1[10][1];
+      let thirdBall = this.state.player1[10][2];
+      if(firstBall < 10 && frame[1] === 1 && (score + firstBall > 10)) {
+        return false;
+      } else if (firstBall === 10 && secondBall < 10 && (score + secondBall > 10)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   determineNextTurn(score) {
-    if (this.state.currentTurn % 2 === 0 && score === 10) {
+    if (this.state.currentScore < 18 && this.state.currentTurn % 2 === 0 && score === 10) {
       return this.state.currentTurn + 2;
     } else {
       return this.state.currentTurn + 1;
