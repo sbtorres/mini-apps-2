@@ -1,4 +1,5 @@
 import React from 'react';
+import Scoreboard from './Scoreboard.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,9 @@ class App extends React.Component {
   
   render() {
     return (
-      <div>test</div>
+      <div>
+        <Scoreboard />
+      </div>
     )
   }
 }
