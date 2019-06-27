@@ -21,7 +21,7 @@ class Keypad extends React.Component {
 
   handleScoreSubmission(event) {
     const { handleScoreInput } = this.props;
-    handleScoreInput(this.state.score);
+    handleScoreInput(Number(this.state.score));
     this.setState({
       score: 0
     })

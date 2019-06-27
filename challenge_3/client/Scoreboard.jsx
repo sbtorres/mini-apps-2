@@ -19,16 +19,43 @@ class Scoreboard extends React.Component {
         [0, 0],
         [0, 0],
         [0, 0],
-        [0, 0]
+        [0, 0, 0]
       ],
-      total: 0
+      total: 0,
+      currentTurn: 0
     };
 
     this.handleScoreInput = this.handleScoreInput.bind(this);
+    this.determineFrame = this.determineFrame.bind(this);
+    this.determineNextTurn = this.determineNextTurn.bind(this);
   }
 
   handleScoreInput(nextScore) {
-    console.log(nextScore);
+    let frame = this.determineFrame();
+    let newBoard = this.state.player1;
+    newBoard[frame[0]][frame[1]] = nextScore;
+    let updatedTotal = this.state.total + nextScore;
+    let nextTurn = this.determineNextTurn(nextScore);
+    this.setState({
+      player1: newBoard,
+      total: updatedTotal,
+      currentTurn: nextTurn
+    });
+  }
+
+  determineFrame() {
+    let currentTurn = this.state.currentTurn;
+    let framePlacement = 1 + Math.floor(currentTurn / 2);
+    let ballPlacement = currentTurn % 2;
+    return [framePlacement, ballPlacement];
+  }
+
+  determineNextTurn(score) {
+    if (this.state.currentTurn % 2 === 0 && score === 10) {
+      return this.state.currentTurn + 2;
+    } else {
+      return this.state.currentTurn + 1;
+    }
   }
 
   render() {
