@@ -22,7 +22,8 @@ class Scoreboard extends React.Component {
         [0, 0, 0]
       ],
       total: 0,
-      currentTurn: 0
+      currentTurn: 0,
+      isValidScore: true
     };
 
     this.handleScoreInput = this.handleScoreInput.bind(this);
@@ -33,14 +34,21 @@ class Scoreboard extends React.Component {
   handleScoreInput(nextScore) {
     let frame = this.determineFrame();
     let newBoard = this.state.player1;
-    newBoard[frame[0]][frame[1]] = nextScore;
-    let updatedTotal = this.state.total + nextScore;
-    let nextTurn = this.determineNextTurn(nextScore);
-    this.setState({
-      player1: newBoard,
-      total: updatedTotal,
-      currentTurn: nextTurn
-    });
+    if (frame[1] === 1 && (nextScore + newBoard[frame[0]][0] > 10)) {
+      this.setState({
+        isValidScore: false
+      })
+    } else {
+      newBoard[frame[0]][frame[1]] = nextScore;
+      let updatedTotal = this.state.total + nextScore;
+      let nextTurn = this.determineNextTurn(nextScore);
+      this.setState({
+        player1: newBoard,
+        total: updatedTotal,
+        currentTurn: nextTurn,
+        isValidScore: true
+      });
+    }
   }
 
   determineFrame() {
@@ -76,6 +84,11 @@ class Scoreboard extends React.Component {
           </tbody>
         </table>
         <Keypad handleScoreInput={this.handleScoreInput} />
+        <div>
+          {!this.state.isValidScore && 
+            <div>Not a valid score submission, total pins per frame cannot be greater than 10. Please re-input valid score.</div>
+          }
+        </div>
       </div>
     )
   }
