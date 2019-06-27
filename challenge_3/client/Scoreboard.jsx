@@ -32,12 +32,14 @@ class Scoreboard extends React.Component {
     this.checkIfScoreIsValid = this.checkIfScoreIsValid.bind(this);
     this.determineNextTurn = this.determineNextTurn.bind(this);
     this.checkGameStatus = this.checkGameStatus.bind(this);
+    this.startNewGame = this.startNewGame.bind(this);
   }
 
   handleScoreInput(nextScore) {
     let frame = this.determineFrame();
     let newBoard = this.state.player1;
     let validScore = this.checkIfScoreIsValid(nextScore, frame, newBoard);
+
     if (!validScore) {
       this.setState({
         isValidScore: false
@@ -51,9 +53,7 @@ class Scoreboard extends React.Component {
         total: updatedTotal,
         currentTurn: nextTurn,
         isValidScore: true,
-      }, () => {
-        this.checkGameStatus(); 
-      });
+      }, () => this.checkGameStatus());
     }
   }
 
@@ -88,7 +88,7 @@ class Scoreboard extends React.Component {
   }
 
   determineNextTurn(score) {
-    if (this.state.currentScore < 18 && this.state.currentTurn % 2 === 0 && score === 10) {
+    if (this.state.currentTurn < 18 && this.state.currentTurn % 2 === 0 && score === 10) {
       return this.state.currentTurn + 2;
     } else {
       return this.state.currentTurn + 1;
@@ -103,6 +103,28 @@ class Scoreboard extends React.Component {
         isGameOver: true,
       })
     }
+  }
+
+  startNewGame() {
+    this.setState({
+      player1: [
+        'Scott',
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0, 0]
+      ],
+      total: 0,
+      currentTurn: 0,
+      isValidScore: true,
+      isGameOver: false,
+    })
   }
 
   render() {
@@ -134,7 +156,7 @@ class Scoreboard extends React.Component {
           {this.state.isGameOver && 
             <div>
               <div>Nice game! Click "New Game" to start a new game!</div>
-              <button>New Game!</button>
+              <button onClick={this.startNewGame}>New Game!</button>
             </div>
           }
         </div>
