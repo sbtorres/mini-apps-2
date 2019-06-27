@@ -22,7 +22,7 @@ class Scoreboard extends React.Component {
         [0, 0, 0]
       ],
       total: 0,
-      currentTurn: 18,
+      currentTurn: 0,
       isValidScore: true,
       isGameOver: false,
     };
@@ -37,7 +37,7 @@ class Scoreboard extends React.Component {
   handleScoreInput(nextScore) {
     let frame = this.determineFrame();
     let newBoard = this.state.player1;
-    let validScore = this.checkIfScoreIsValid(nextScore, frame);
+    let validScore = this.checkIfScoreIsValid(nextScore, frame, newBoard);
     if (!validScore) {
       this.setState({
         isValidScore: false
@@ -68,8 +68,8 @@ class Scoreboard extends React.Component {
     }
   }
 
-  checkIfScoreIsValid(score, frame) {
-    if(this.state.currentTurn < 18 && frame[1] === 1 && (score + newBoard[frame[0]][0] > 10)) {
+  checkIfScoreIsValid(score, frame, currentBoard) {
+    if(this.state.currentTurn < 18 && frame[1] === 1 && (score + currentBoard[frame[0]][0] > 10)) {
       return false;
     }
 
