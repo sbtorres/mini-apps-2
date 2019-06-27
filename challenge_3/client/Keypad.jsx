@@ -9,12 +9,21 @@ class Keypad extends React.Component {
     };
 
     this.handleKeypadClick = this.handleKeypadClick.bind(this);
+    this.handleScoreSubmission = this.handleScoreSubmission.bind(this);
   }
 
   handleKeypadClick(event) {
     let inputScore = event.target.getAttribute('name');
     this.setState({
       score: inputScore
+    })
+  }
+
+  handleScoreSubmission(event) {
+    const { handleScoreInput } = this.props;
+    handleScoreInput(this.state.score);
+    this.setState({
+      score: 0
     })
   }
 
@@ -51,7 +60,7 @@ class Keypad extends React.Component {
             {this.state.score !== 0 &&
               <div>
                 <span>Input Score: {this.state.score}</span>
-                <button >Submit Score!</button>
+                <button onClick={this.handleScoreSubmission}>Submit Score!</button>
               </div>
             }
           </div>

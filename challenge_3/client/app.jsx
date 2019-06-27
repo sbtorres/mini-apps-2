@@ -1,6 +1,5 @@
 import React from 'react';
 import Scoreboard from './Scoreboard.jsx';
-import Keypad from './Keypad.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +12,6 @@ class App extends React.Component {
     return (
       <div>
         <Scoreboard />
-        <Keypad />
       </div>
     )
   }
