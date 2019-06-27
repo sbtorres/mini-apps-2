@@ -7,7 +7,20 @@ class Scoreboard extends React.Component {
     super(props);
 
     this.state = {
-      player1: ['Scott',0,0,0,0,0,0,0,0,0,0,0]
+      player1: [
+        'Scott',
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0]
+      ],
+      total: 0
     };
   }
 
@@ -23,6 +36,7 @@ class Scoreboard extends React.Component {
             {this.state.player1.map((tableRow, index) => {
               return(<Frame tableRow={tableRow} key={index}/>)
             })}
+            <td>{this.state.total}</td>
           </tr>
         </tbody>
       </table>
