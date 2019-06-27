@@ -76,9 +76,8 @@ class Scoreboard extends React.Component {
 
   checkGameStatus() {
     let currentTurn = this.state.currentTurn;
-    console.log(this.state.player1);
     let tenthFrameScore = this.state.player1[10][0] + this.state.player1[10][1]
-    if (currentTurn > 19 && tenthFrameScore < 10) {
+    if (currentTurn > 19 && tenthFrameScore < 10 || currentTurn > 20) {
       this.setState({
         isGameOver: true,
       })
@@ -102,7 +101,9 @@ class Scoreboard extends React.Component {
             </tr>
           </tbody>
         </table>
-        <Keypad handleScoreInput={this.handleScoreInput} />
+          {!this.state.isGameOver && 
+            <Keypad handleScoreInput={this.handleScoreInput} />
+          }
         <div>
           {!this.state.isValidScore && 
             <div>Not a valid score submission, total pins per frame cannot be greater than 10. Please re-input valid score.</div>
