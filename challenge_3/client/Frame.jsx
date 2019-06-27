@@ -7,11 +7,18 @@ const Frame = (props) => {
     )
   } else if (props.tableRow.length === 3) {
     return (
-      <td>{props.tableRow[0]} {props.tableRow[1]} {props.tableRow[2]}</td>
+      <td>
+        {props.tableRow[0] === 10 ? 'X' : props.tableRow[0]} {' '}
+        {props.tableRow[1] === 10 ? 'X' : ((props.tableRow[0] + props.tableRow[1] === 10) && props.tableRow[0] !== 10) ? '/' : props.tableRow[1]} {' '}
+        {props.tableRow[2] === 10 ? 'X' : ((props.tableRow[1] + props.tableRow[2] === 10) && props.tableRow[1] !== 10) ? '/' : props.tableRow[2]}
+      </td>
     )
   } else {
     return (
-        <td>{props.tableRow[0]} {props.tableRow[1]}</td>
+        <td>
+          {props.tableRow[0] === 10 ? 'X' : props.tableRow[0]} {' '}
+          {((props.tableRow[0] + props.tableRow[1] === 10) && props.tableRow[0] !== 10) ? '/' : props.tableRow[1]}
+        </td>
     )
   }
 }
